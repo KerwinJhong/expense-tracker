@@ -16,7 +16,7 @@ app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
-mongoose.connect('mongodb://localhost/record', { useNewUrlParser: true, useCreateIndex: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/record', { useNewUrlParser: true, useCreateIndex: true })
 
 const db = mongoose.connection
 
@@ -54,6 +54,6 @@ app.use('/users', require('./routes/users'))
 app.use('/auth', require('./routes/auths'))
 app.use('/', require('./routes/search'))
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('app is running')
 })
