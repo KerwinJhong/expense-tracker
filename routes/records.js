@@ -15,6 +15,7 @@ router.post('/', authenticated, (req, res) => {
     const record = Record({
         name: req.body.name,
         category: req.body.category,
+        merchant: req.body.merchant || "",
         date: req.body.date,
         amount: req.body.amount,
         userId: req.user._id
@@ -44,6 +45,7 @@ router.put('/:id/edit', authenticated, (req, res) => {
         if (err) return console.error(err)
         record.name = req.body.name
         record.category = req.body.category
+        record.merchant = req.body.merchant || ""
         record.date = req.body.date
         record.amount = req.body.amount
         record.save(err => {

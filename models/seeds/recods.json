@@ -1,119 +1,139 @@
 [{
         "name": "早餐",
         "category": "utensils",
+        "merchant": "麥當勞",
         "date": "2019-05-06",
         "amount": 140
     },
     {
         "name": "中餐",
         "category": "utensils",
+        "merchant": "KFC",
         "date": "2019-04-12",
         "amount": 200
     },
     {
         "name": "看電影",
         "category": "grin-beam",
+        "merchant": "XX電影院",
         "date": "2019-02-26",
         "amount": 800
     },
     {
         "name": "遊樂園",
         "category": "grin-beam",
+        "merchant": "XX遊樂園",
         "date": "2019-01-01",
         "amount": 600
     }, {
         "name": "Uber",
         "category": "shuttle-van",
+        "merchant": "Uber",
         "date": "2019-07-26",
         "amount": 200
     },
     {
         "name": "公車",
         "category": "shuttle-van",
+        "merchant": "",
         "date": "2019-01-11",
         "amount": 20
     },
     {
         "name": "水費",
         "category": "home",
+        "merchant": "",
         "date": "2019-05-22",
         "amount": 1030
     },
     {
         "name": "電費",
         "category": "home",
+        "merchant": "台電",
         "date": "2019-08-20",
         "amount": 1200
     },
     {
         "name": "兒子學費",
         "category": "pen",
+        "merchant": "YY學校",
         "date": "2019-08-08",
         "amount": 52000
     },
     {
         "name": "捐款",
         "category": "pen",
+        "merchant": "TT慈善機構",
         "date": "2019-04-09",
         "amount": 6666
     },
     {
         "name": "晚餐",
         "category": "utensils",
+        "merchant": "AA餐廳",
         "date": "2019-04-08",
         "amount": 70
     },
     {
         "name": "消夜",
         "category": "utensils",
+        "merchant": "BB滷味",
         "date": "2019-03-15",
         "amount": 400
     },
     {
         "name": "出遊",
         "category": "grin-beam",
+        "merchant": "宜蘭YY旅店",
         "date": "2019-03-03",
         "amount": 60000
     },
     {
         "name": "KTV",
         "category": "grin-beam",
+        "merchant": "OOKTV",
         "date": "2019-02-17",
         "amount": 650
     },
     {
         "name": "高鐵",
         "category": "shuttle-van",
+        "merchant": "高鐵",
         "date": "2019-02-02",
         "amount": 760
     },
     {
         "name": "捷運",
         "category": "shuttle-van",
+        "merchant": "台北市",
         "date": "2019-04-04",
         "amount": 70
     },
     {
         "name": "網路費",
         "category": "home",
+        "merchant": "BB寬頻",
         "date": "2019-06-12",
         "amount": 1000
     },
     {
         "name": "房貸",
         "category": "home",
+        "merchant": "",
         "date": "2019-06-06",
         "amount": 25000
     },
     {
         "name": "車貸",
         "category": "pen",
+        "merchant": "KK高利貸",
         "date": "2019-07-30",
         "amount": 20000
     },
     {
         "name": "找小三",
         "category": "pen",
+        "merchant": "MM越南店",
         "date": "2019-08-08",
         "amount": 200000
     }

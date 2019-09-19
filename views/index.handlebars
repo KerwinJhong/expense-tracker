@@ -28,26 +28,40 @@
 <table class="table table-striped">
   <tbody>
     {{#each records}}
-    <tr>
-      <th scope="row" style="text-align: left;">
+    <tr style="position: relative;">
+      <th scope="row" style="text-align: left;vertical-align: middle;">
         <i class="fas fa-{{{this.category}}} mr-3" style="font-size: 2.5rem; width: 4vw"></i>
         <div class="d-inline-block text-left">
           <h4 style="font-size: 1rem;margin: 0;">{{{this.name}}}</h4>
           <small style="display: inline;vertical-align: middle;">{{{this.date}}}</small>
         </div>
       </th>
-      <td style="text-align: right;">
-        <h4 style="display: inline;font-size: 2.5rem; margin-bottom: 0;" id="amount">{{{this.amount}}}</h4>
+      <td style="text-align: right;vertical-align: middle;">
+        <h4 style="display: inline;font-size: 2.5rem; margin-bottom: 0;">{{{this.merchant}}}</h4>
       </td>
-      <td style="vertical-align: middle;">
-        <div class="col-auto my-auto text-right">
-          <a href="/records/{{{this.id}}}/edit" class="btn btn-success">修改</a>
-          <form action="/records/{{{this.id}}}/delete?_method=DELETE" method="post"
-            style="display:inline;margin-left: 15px;">
-            <button type="submit" class="btn btn-danger">刪除</button>
-          </form>
+      <td style="text-align: right;vertical-align: middle;">
+        <div>
+          <h4 style="display: inline;font-size: 2.5rem; margin-bottom: 0;vertical-align: middle;" id="amount">
+            {{{this.amount}}}</h4>
+          <div class="btn-group dropleft">
+            <button type="button" class="btn btn-secondary dropdown-toggle" style="padding: 10px 5px;"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div class="dropdown-menu py-0">
+              <a href="/records/{{{this.id}}}/edit" class="btn btn-success">修改</a>
+              <form action="/records/{{{this.id}}}/delete?_method=DELETE" method="post" style="display:inline;">
+                <button type="submit" class="btn btn-danger">刪除</button>
+            </div>
+          </div>
         </div>
       </td>
+      {{!-- <div class="col-auto my-auto text-right;position: absolute;right: 0px;top: 0px;z-index: 1;">
+        <a href="/records/{{{this.id}}}/edit" class="btn btn-success">修改</a>
+        <form action="/records/{{{this.id}}}/delete?_method=DELETE" method="post"
+          style="display:inline;margin-left: 15px;">
+          <button type="submit" class="btn btn-danger">刪除</button>
+        </form>
+      </div> --}}
     </tr>
     {{/each}}
   </tbody>
