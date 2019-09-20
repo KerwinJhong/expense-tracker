@@ -84,6 +84,37 @@
 </body>
 
 <script>
+  function selecter(dd) {
+    let vv = '.' + dd + 'Srt'
+    let otBox
+    if (dd === 'year') { otBox = "inVaYear" }
+    if (dd === 'month') { otBox = "inVaMonth" }
+    if (dd === 'day') { otBox = "inVaDay" }
+    if (dd === 'category') { otBox = "inVaCategory" }
+
+    var ww = document.querySelectorAll(vv);
+    var oo = document.getElementById(otBox);
+    for (let i = 0; i < ww.length; i++) {
+      if (ww[i].checked) {
+        oo.value = ww[i].value;
+      }
+    }
+  }
+
+  function selectedddr() {
+    var x = document.querySelectorAll(".srt");
+    x.forEach(cc => { if (cc.checked) console.log(cc.value) })
+  }
+
+  function selecterGroup() {
+    var x = document.getElementById("selecterGroup");
+    if (x.style.display === "none") {
+      x.style.display = "block";
+    } else {
+      x.style.display = "none";
+    }
+  }
+
   var prevScrollpos = window.pageYOffset;
   window.onscroll = function () {
     var currentScrollPos = window.pageYOffset;

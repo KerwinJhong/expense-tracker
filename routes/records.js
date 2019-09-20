@@ -26,17 +26,13 @@ router.post('/', authenticated, (req, res) => {
     })
 })
 
-router.get('/:id', authenticated, (req, res) => {
-    Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
-        if (err) return console.error(err)
-        return res.render('detail', { record: record })
-    })
-})
-
 router.get('/:id/edit', authenticated, (req, res) => {
     Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
         if (err) return console.error(err)
-        return res.render('edit', { record: record })
+            // ============ dateFormat ============
+        let dateFormat = { "dateFormat": record.date.toJSON().substr(0, 10) }
+        Object.assign(record, dateFormat)
+        return res.render('edit', { record: record, dateFormat: dateFormat })
     })
 })
 

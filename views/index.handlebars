@@ -9,22 +9,56 @@
       <span class="align-top" style="font-size: 2.0rem;" id="total">{{{amount}}}</span>
     </div>
     <div class="col text-right pr-0">
-      <div class="btn-group">
-        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-          aria-expanded="false">類型</button>
-        <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="/">全部</a>
-          <a class="dropdown-item" href="/search?sortKey=home&sortValue=asc">家居物業</a>
-          <a class="dropdown-item" href="/search?sortKey=shuttle-van&sortValue=asc">交通出行</a>
-          <a class="dropdown-item" href="/search?sortKey=grin-beam&sortValue=asc">休閒娛樂</a>
-          <a class="dropdown-item" href="/search?sortKey=utensils&sortValue=asc">餐飲食品</a>
-          <a class="dropdown-item" href="/search?sortKey=pen&sortValue=asc">其他</a>
-        </div>
-      </div>
+      <button class="btn text-white dropdown-toggle" onclick="selecterGroup()"
+        style="background-color: #007BFF">過濾器</button>
     </div>
   </div>
 </div>
-
+<div id="selecterGroup" style="display: none;background-color: #F3F3F3;">
+  <form action="/search">
+    <div class="row text-left">
+      {{!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCentered">
+      分類</button> --}}
+      <div class="form-group col">
+        <label for="inVaYear">年：</label>
+        <input type="text" class="form-control" name="year" data-toggle="modal" data-target="#yearModal"
+          placeholder="選擇年份" id="inVaYear" readonly>
+      </div>
+      <div class="form-group col">
+        <label for="inVaMonth">月：</label>
+        <input type="text" class="form-control" name="month" data-toggle="modal" data-target="#monthModal"
+          placeholder="選擇月份" id="inVaMonth" readonly>
+      </div>
+      <div class="form-group col">
+        <label for="inVaDay">日：</label>
+        <input type="text" class="form-control" name="day" data-toggle="modal" data-target="#dayModal"
+          placeholder="選擇日份" id="inVaDay" readonly>
+      </div>
+      <div class="form-group col">
+        <label for="inVaCategory">類型：</label>
+        <input type="text" class="form-control" name="category" data-toggle="modal" data-target="#categoryModal"
+          placeholder="選擇類型" id="inVaCategory" readonly>
+      </div>
+      {{!-- <input type="text" data-toggle="modal" data-target="#exampleModalCentered" readonly> --}}
+      {{!-- <div class="btn-group">
+      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+        aria-expanded="false">類型</button>
+      <div class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href="/">全部</a>
+        <a class="dropdown-item" href="/search?sortKey=home&sortValue=asc">家居物業</a>
+        <a class="dropdown-item" href="/search?sortKey=shuttle-van&sortValue=asc">交通出行</a>
+        <a class="dropdown-item" href="/search?sortKey=grin-beam&sortValue=asc">休閒娛樂</a>
+        <a class="dropdown-item" href="/search?sortKey=utensils&sortValue=asc">餐飲食品</a>
+        <a class="dropdown-item" href="/search?sortKey=pen&sortValue=asc">其他</a>
+      </div>
+    </div> --}}
+      <div class="form-group col my-auto text-right">
+        {{!-- <input type="submit" value="搜尋"> --}}
+        <button type="submit" class="btn btn-secondary">搜尋</button>
+      </div>
+    </div>
+  </form>
+</div>
 <table class="table table-striped">
   <tbody>
     {{#each records}}
@@ -33,7 +67,7 @@
         <i class="fas fa-{{{this.category}}} mr-3" style="font-size: 2.5rem; width: 4vw"></i>
         <div class="d-inline-block text-left">
           <h4 style="font-size: 1rem;margin: 0;">{{{this.name}}}</h4>
-          <small style="display: inline;vertical-align: middle;">{{{this.date}}}</small>
+          <small style="display: inline;vertical-align: middle;">{{{this.dateFormat}}}</small>
         </div>
       </th>
       <td style="text-align: right;vertical-align: middle;">
@@ -55,14 +89,186 @@
           </div>
         </div>
       </td>
-      {{!-- <div class="col-auto my-auto text-right;position: absolute;right: 0px;top: 0px;z-index: 1;">
-        <a href="/records/{{{this.id}}}/edit" class="btn btn-success">修改</a>
-        <form action="/records/{{{this.id}}}/delete?_method=DELETE" method="post"
-          style="display:inline;margin-left: 15px;">
-          <button type="submit" class="btn btn-danger">刪除</button>
-        </form>
-      </div> --}}
     </tr>
     {{/each}}
   </tbody>
 </table>
+
+<!-- yearModal -->
+<div class="modal" id="yearModal" tabindex="-1" role="dialog" aria-labelledby="yearModalCenteredLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="yearModalCenteredLabel">選擇年份:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-left">
+          <div class="custom-control custom-radio">
+            <input type="radio" id="year1" name="year" value="全部" class="custom-control-input yearSrt">
+            <label class="custom-control-label" for="year1">全部</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="year2" name="year" value="2016" class="custom-control-input yearSrt">
+            <label class="custom-control-label" for="year2">2016</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="year3" name="year" value="2017" class="custom-control-input yearSrt">
+            <label class="custom-control-label" for="year3">2017</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="year4" name="year" value="2018" class="custom-control-input yearSrt">
+            <label class="custom-control-label" for="year4">2018</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="year5" name="year" value="2019" class="custom-control-input yearSrt">
+            <label class="custom-control-label" for="year5">2019</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="selecter('year')" data-dismiss="modal">Save
+            changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- monthModal -->
+<div class="modal" id="monthModal" tabindex="-1" role="dialog" aria-labelledby="monthModalCenteredLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="monthModalCenteredLabel">選擇月份:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-left">
+          <div class="custom-control custom-radio">
+            <input type="radio" id="month1" name="month" value="全部" class="custom-control-input monthSrt">
+            <label class="custom-control-label" for="month1">全部</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="month2" name="month" value="6" class="custom-control-input monthSrt">
+            <label class="custom-control-label" for="month2">6</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="month3" name="month" value="7" class="custom-control-input monthSrt">
+            <label class="custom-control-label" for="month3">7</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="month4" name="month" value="8" class="custom-control-input monthSrt">
+            <label class="custom-control-label" for="month4">8</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="month5" name="month" value="9" class="custom-control-input monthSrt">
+            <label class="custom-control-label" for="month5">9</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="selecter('month')" data-dismiss="modal">Save
+            changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- dayModal -->
+<div class="modal" id="dayModal" tabindex="-1" role="dialog" aria-labelledby="dayModalCenteredLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="dayModalCenteredLabel">選擇日份:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-left">
+          <div class="custom-control custom-radio">
+            <input type="radio" id="day1" name="day" value="全部" class="custom-control-input daySrt">
+            <label class="custom-control-label" for="day1">全部</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="day2" name="day" value="1" class="custom-control-input daySrt">
+            <label class="custom-control-label" for="day2">1</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="day3" name="day" value="2" class="custom-control-input daySrt">
+            <label class="custom-control-label" for="day3">2</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="day4" name="day" value="3" class="custom-control-input daySrt">
+            <label class="custom-control-label" for="day4">3</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="day5" name="day" value="4" class="custom-control-input daySrt">
+            <label class="custom-control-label" for="day5">4</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" onclick="selecter('day')" data-dismiss="modal">Save
+            changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- categoryModal -->
+<div class="modal" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalCenteredLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="categoryModalCenteredLabel">選擇類型:</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="text-left">
+          <div class="custom-control custom-radio">
+            <input type="radio" id="category1" name="category" value="全部" class="custom-control-input categorySrt">
+            <label class="custom-control-label" for="category1">全部</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="category2" name="category" value="家居物業" class="custom-control-input categorySrt">
+            <label class="custom-control-label" for="category2">家居物業</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="category3" name="category" value="交通出行" class="custom-control-input categorySrt">
+            <label class="custom-control-label" for="category3">交通出行</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="category4" name="category" value="休閒娛樂" class="custom-control-input categorySrt">
+            <label class="custom-control-label" for="category4">休閒娛樂</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="category5" name="category" value="餐飲食品" class="custom-control-input categorySrt">
+            <label class="custom-control-label" for="category5">餐飲食品</label>
+          </div>
+          <div class="custom-control custom-radio">
+            <input type="radio" id="category6" name="category" value="其他" class="custom-control-input categorySrt">
+            <label class="custom-control-label" for="category6">其他</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="selecter('category')" data-dismiss="modal">Save
+          changes</button>
+      </div>
+    </div>
+  </div>
+</div>
