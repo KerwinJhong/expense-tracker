@@ -4,7 +4,7 @@ const User = require('../user')
 const record = require('./recods.json')
 const bcrypt = require('bcryptjs')
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/record', { useNewUrlParser: true, useCreateIndex: true })
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://heroku_xt8qncz9:98df8d4g8ftnao4jabvnqo8es5@ds157818.mlab.com:57818/heroku_xt8qncz9', { useNewUrlParser: true, useCreateIndex: true })
 
 const db = mongoose.connection
 const userList = [{
