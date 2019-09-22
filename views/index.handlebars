@@ -17,8 +17,6 @@
 <div id="selecterGroup" style="display: none;background-color: #F3F3F3;">
   <form action="/">
     <div class="row text-left">
-      {{!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCentered">
-      分類</button> --}}
       <div class="form-group col">
         <label for="inVaYear">年：</label>
         <input type="text" class="form-control" name="year" data-toggle="modal" data-target="#yearModal"
@@ -54,7 +52,8 @@
       <th scope="row" style="text-align: left;vertical-align: middle;">
         <i class="fas fa-{{{this.category}}} mr-3" style="font-size: 2.5rem; width: 4vw"></i>
         <div class="d-inline-block text-left">
-          <h4 style="display: inline;font-size: 2.5rem; margin-bottom: 0;">{{{this.name}}}</h4>
+          <h4 style="display: inline;font-size: 2.5rem; margin-bottom: 0;overflow: auto;
+    max-width: 40vw;">{{{this.name}}}</h4>
         </div>
       </th>
       <td style="text-align: right;vertical-align: middle;">
