@@ -14,7 +14,7 @@ router.get('/new', authenticated, (req, res) => {
 router.post('/', authenticated, (req, res) => {
     const record = Record({
         name: req.body.name,
-        category: req.body.category,
+        category: req.body.category || "pen",
         merchant: req.body.merchant || "",
         date: req.body.date,
         amount: req.body.amount,

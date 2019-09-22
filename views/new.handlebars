@@ -3,7 +3,7 @@
   <form action="/records" method="POST">
     <div>
       <label for="name" class="my-1">名稱：(20字內)</label>
-      <input type="text" placeholder="名稱" name="name" id="name" maxlength="10" class="form-control">
+      <input type="text" placeholder="名稱" name="name" id="name" maxlength="10" class="form-control" required>
     </div>
     <div class="form-group m-0">
       <label for="merchant" class="my-1">商家：</label>
@@ -11,7 +11,7 @@
     </div>
     <div class="form-group m-0">
       <label for="date" class="my-1">時間：</label>
-      <input class="form-control" type="date" id="date" name="date">
+      <input class="form-control" type="date" id="date" name="date" required>
     </div>
     <div>
       <label for="category" class="my-1">類別：</label>
@@ -26,7 +26,7 @@
     </div>
     <div>
       <label for="amount" class="my-1">金額：</label>
-      <input type="number" placeholder="金額" name="amount" id="amount" class="form-control">
+      <input type="number" placeholder="金額" name="amount" id="amount" class="form-control" required>
     </div>
     <div class="row w-100 m-0 mt-3">
       <div class="col text-right p-0">
