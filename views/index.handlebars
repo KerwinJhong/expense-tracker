@@ -9,53 +9,41 @@
       <span class="align-top" style="font-size: 2.0rem;" id="total">{{{amount}}}</span>
     </div>
     <div class="col text-right pr-0">
-      <button class="btn text-white dropdown-toggle" onclick="selecterGroup()"
+      <button class="btn text-white dropdown-toggle" onclick="showSelect()"
         style="background-color: #007BFF">過濾器</button>
     </div>
   </div>
 </div>
 <div id="selecterGroup" style="display: none;background-color: #F3F3F3;">
-  <form action="/search">
+  <form action="/">
     <div class="row text-left">
       {{!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCentered">
       分類</button> --}}
       <div class="form-group col">
         <label for="inVaYear">年：</label>
         <input type="text" class="form-control" name="year" data-toggle="modal" data-target="#yearModal"
-          placeholder="選擇年份" id="inVaYear" readonly>
+          placeholder="選擇年份" id="inVaYear" {{#if year}}value="{{{year}}}" {{/if}} onclick="yearItem()" readonly>
       </div>
       <div class="form-group col">
         <label for="inVaMonth">月：</label>
         <input type="text" class="form-control" name="month" data-toggle="modal" data-target="#monthModal"
-          placeholder="選擇月份" id="inVaMonth" readonly>
+          placeholder="選擇月份" id="inVaMonth" {{#if month}}value="{{{month}}}" {{/if}} onclick="monthItem()" disabled
+          readonly>
       </div>
       <div class="form-group col">
         <label for="inVaDay">日：</label>
         <input type="text" class="form-control" name="day" data-toggle="modal" data-target="#dayModal"
-          placeholder="選擇日份" id="inVaDay" readonly>
+          placeholder="選擇日份" id="inVaDay" {{#if day}}value="{{{day}}}" {{/if}} onclick="dayItem()" disabled readonly>
       </div>
       <div class="form-group col">
         <label for="inVaCategory">類型：</label>
-        <input type="text" class="form-control" name="category" data-toggle="modal" data-target="#categoryModal"
-          placeholder="選擇類型" id="inVaCategory" readonly>
+        <input type="text" class="form-control" name="categoryKey" data-toggle="modal" data-target="#categoryModal"
+          placeholder="選擇類型" id="inVaCategory" {{#if categoryKey}}value="{{{categoryKey}}}" {{/if}} readonly>
       </div>
-      {{!-- <input type="text" data-toggle="modal" data-target="#exampleModalCentered" readonly> --}}
-      {{!-- <div class="btn-group">
-      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false">類型</button>
-      <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item" href="/">全部</a>
-        <a class="dropdown-item" href="/search?sortKey=home&sortValue=asc">家居物業</a>
-        <a class="dropdown-item" href="/search?sortKey=shuttle-van&sortValue=asc">交通出行</a>
-        <a class="dropdown-item" href="/search?sortKey=grin-beam&sortValue=asc">休閒娛樂</a>
-        <a class="dropdown-item" href="/search?sortKey=utensils&sortValue=asc">餐飲食品</a>
-        <a class="dropdown-item" href="/search?sortKey=pen&sortValue=asc">其他</a>
-      </div>
-    </div> --}}
-      <div class="form-group col my-auto text-right">
-        {{!-- <input type="submit" value="搜尋"> --}}
-        <button type="submit" class="btn btn-secondary">搜尋</button>
-      </div>
+    </div>
+    <div class="row">
+      <button type="submit" class="btn btn-secondary mx-auto mb-3"
+        style="padding-right: 60px;padding-left: 60px;">搜尋</button>
     </div>
   </form>
 </div>
@@ -66,12 +54,14 @@
       <th scope="row" style="text-align: left;vertical-align: middle;">
         <i class="fas fa-{{{this.category}}} mr-3" style="font-size: 2.5rem; width: 4vw"></i>
         <div class="d-inline-block text-left">
-          <h4 style="font-size: 1rem;margin: 0;">{{{this.name}}}</h4>
-          <small style="display: inline;vertical-align: middle;">{{{this.dateFormat}}}</small>
+          <h4 style="display: inline;font-size: 2.5rem; margin-bottom: 0;">{{{this.name}}}</h4>
         </div>
       </th>
       <td style="text-align: right;vertical-align: middle;">
-        <h4 style="display: inline;font-size: 2.5rem; margin-bottom: 0;">{{{this.merchant}}}</h4>
+        <div class="d-inline-block text-right">
+          <h4 style="font-size: 1rem;margin: 0;">{{{this.merchant}}}</h4>
+          <small style="display: inline;vertical-align: middle;">{{{this.dateFormat}}}</small>
+        </div>
       </td>
       <td style="text-align: right;vertical-align: middle;">
         <div>
@@ -106,32 +96,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="text-left">
-          <div class="custom-control custom-radio">
-            <input type="radio" id="year1" name="year" value="全部" class="custom-control-input yearSrt">
-            <label class="custom-control-label" for="year1">全部</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="year2" name="year" value="2016" class="custom-control-input yearSrt">
-            <label class="custom-control-label" for="year2">2016</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="year3" name="year" value="2017" class="custom-control-input yearSrt">
-            <label class="custom-control-label" for="year3">2017</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="year4" name="year" value="2018" class="custom-control-input yearSrt">
-            <label class="custom-control-label" for="year4">2018</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="year5" name="year" value="2019" class="custom-control-input yearSrt">
-            <label class="custom-control-label" for="year5">2019</label>
-          </div>
+        <div class="text-left overflow-auto d-inline-block" id="yearList" style="height: 50vh;">
+
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="selecter('year')" data-dismiss="modal">Save
-            changes</button>
+          <button type="button" class="btn btn-primary" onclick="selecter('year')" data-dismiss="modal">Confirm</button>
         </div>
       </div>
     </div>
@@ -150,32 +120,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="text-left">
-          <div class="custom-control custom-radio">
-            <input type="radio" id="month1" name="month" value="全部" class="custom-control-input monthSrt">
-            <label class="custom-control-label" for="month1">全部</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="month2" name="month" value="6" class="custom-control-input monthSrt">
-            <label class="custom-control-label" for="month2">6</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="month3" name="month" value="7" class="custom-control-input monthSrt">
-            <label class="custom-control-label" for="month3">7</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="month4" name="month" value="8" class="custom-control-input monthSrt">
-            <label class="custom-control-label" for="month4">8</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="month5" name="month" value="9" class="custom-control-input monthSrt">
-            <label class="custom-control-label" for="month5">9</label>
-          </div>
-        </div>
+        <div class="text-left overflow-auto d-inline-block" id="monthList" style="height: 50vh;"></div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="selecter('month')" data-dismiss="modal">Save
-            changes</button>
+          <button type="button" class="btn btn-primary" onclick="selecter('month')"
+            data-dismiss="modal">Confirm</button>
         </div>
       </div>
     </div>
@@ -193,32 +142,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="text-left">
-          <div class="custom-control custom-radio">
-            <input type="radio" id="day1" name="day" value="全部" class="custom-control-input daySrt">
-            <label class="custom-control-label" for="day1">全部</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="day2" name="day" value="1" class="custom-control-input daySrt">
-            <label class="custom-control-label" for="day2">1</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="day3" name="day" value="2" class="custom-control-input daySrt">
-            <label class="custom-control-label" for="day3">2</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="day4" name="day" value="3" class="custom-control-input daySrt">
-            <label class="custom-control-label" for="day4">3</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input type="radio" id="day5" name="day" value="4" class="custom-control-input daySrt">
-            <label class="custom-control-label" for="day5">4</label>
-          </div>
-        </div>
+        <div class="text-left overflow-auto d-inline-block" id="dayList" style="height: 50vh;"></div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" onclick="selecter('day')" data-dismiss="modal">Save
-            changes</button>
+          <button type="button" class="btn btn-primary" onclick="selecter('day')" data-dismiss="modal">Confirm</button>
         </div>
       </div>
     </div>
@@ -237,37 +164,43 @@
         </button>
       </div>
       <div class="modal-body">
-        <div class="text-left">
-          <div class="custom-control custom-radio">
+        <div class="text-left overflow-auto d-inline-block" style="height: 50vh;">
+          <label class="custom-control custom-radio"
+            style="padding: 5vh 190px;text-align: center;border: 1px solid #808080;margin: 0;" for="category1">
             <input type="radio" id="category1" name="category" value="全部" class="custom-control-input categorySrt">
             <label class="custom-control-label" for="category1">全部</label>
-          </div>
-          <div class="custom-control custom-radio">
+          </label>
+          <label class="custom-control custom-radio"
+            style="padding: 5vh 180px;text-align: center;border: 1px solid #808080;margin: 0;" for="category2">
             <input type="radio" id="category2" name="category" value="家居物業" class="custom-control-input categorySrt">
             <label class="custom-control-label" for="category2">家居物業</label>
-          </div>
-          <div class="custom-control custom-radio">
+          </label>
+          <label class="custom-control custom-radio"
+            style="padding: 5vh 180px;text-align: center;border: 1px solid #808080;margin: 0;" for="category3">
             <input type="radio" id="category3" name="category" value="交通出行" class="custom-control-input categorySrt">
             <label class="custom-control-label" for="category3">交通出行</label>
-          </div>
-          <div class="custom-control custom-radio">
+          </label>
+          <label class="custom-control custom-radio"
+            style="padding: 5vh 180px;text-align: center;border: 1px solid #808080;margin: 0;" for="category4">
             <input type="radio" id="category4" name="category" value="休閒娛樂" class="custom-control-input categorySrt">
             <label class="custom-control-label" for="category4">休閒娛樂</label>
-          </div>
-          <div class="custom-control custom-radio">
+          </label>
+          <label class="custom-control custom-radio"
+            style="padding: 5vh 180px;text-align: center;border: 1px solid #808080;margin: 0;" for="category5">
             <input type="radio" id="category5" name="category" value="餐飲食品" class="custom-control-input categorySrt">
             <label class="custom-control-label" for="category5">餐飲食品</label>
-          </div>
-          <div class="custom-control custom-radio">
+          </label>
+          <label class="custom-control custom-radio"
+            style="padding: 5vh 190px;text-align: center;border: 1px solid #808080;margin: 0;" for="category6">
             <input type="radio" id="category6" name="category" value="其他" class="custom-control-input categorySrt">
             <label class="custom-control-label" for="category6">其他</label>
-          </div>
+          </label>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="selecter('category')" data-dismiss="modal">Save
-          changes</button>
+        <button type="button" class="btn btn-primary" onclick="selecter('category')"
+          data-dismiss="modal">Confirm</button>
       </div>
     </div>
   </div>

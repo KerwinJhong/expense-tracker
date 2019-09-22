@@ -52,7 +52,6 @@ app.use('/', require('./routes/homes'))
 app.use('/records', require('./routes/records'))
 app.use('/users', require('./routes/users'))
 app.use('/auth', require('./routes/auths'))
-app.use('/', require('./routes/search'))
 
 app.listen(process.env.PORT || 3000, () => {
     console.log('app is running')

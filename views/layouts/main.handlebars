@@ -15,7 +15,7 @@
 
 <body>
   <div id="navbar">
-    <nav class="navbar navbar-dark justify-content-between"
+    <nav class="navbar navbar-dark justify-content-between shadow-lg"
       style="background-color: #007BFF;border-radius: 0px 0px 10% 10%;">
       <a class="navbar-brand font-weight-bolder" href="/">家庭記帳本</a>
       {{#if isAuthenticated}}
@@ -80,73 +80,7 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
-
+  <script src="/javascripts/main.js"></script>
 </body>
-
-<script>
-  function selecter(dd) {
-    let vv = '.' + dd + 'Srt'
-    let otBox
-    if (dd === 'year') { otBox = "inVaYear" }
-    if (dd === 'month') { otBox = "inVaMonth" }
-    if (dd === 'day') { otBox = "inVaDay" }
-    if (dd === 'category') { otBox = "inVaCategory" }
-
-    var ww = document.querySelectorAll(vv);
-    var oo = document.getElementById(otBox);
-    for (let i = 0; i < ww.length; i++) {
-      if (ww[i].checked) {
-        oo.value = ww[i].value;
-      }
-    }
-  }
-
-  function selectedddr() {
-    var x = document.querySelectorAll(".srt");
-    x.forEach(cc => { if (cc.checked) console.log(cc.value) })
-  }
-
-  function selecterGroup() {
-    var x = document.getElementById("selecterGroup");
-    if (x.style.display === "none") {
-      x.style.display = "block";
-    } else {
-      x.style.display = "none";
-    }
-  }
-
-  var prevScrollpos = window.pageYOffset;
-  window.onscroll = function () {
-    var currentScrollPos = window.pageYOffset;
-    if (prevScrollpos > currentScrollPos) {
-      document.getElementById("navbar").style.top = "0";
-    } else {
-      document.getElementById("navbar").style.top = "-65px";
-    }
-    prevScrollpos = currentScrollPos;
-  }
-
-  function changeNum(arr) {
-    for (let i = 0; i < arr.length; i++) {
-      if (Number(arr[i].innerText) > 10000000) {
-        let tenMillion = Math.floor((arr[i].innerText) / 10000000)
-        arr[i].innerText = `$${tenMillion}千萬`
-      } else if (Number(arr[i].innerText) > 100000) {
-        let tenThousand = Math.floor((arr[i].innerText) / 10000)
-        arr[i].innerText = `$${tenThousand}萬`
-      } else {
-        let e = `$${arr[i].innerText}`
-        arr[i].innerText = e
-      }
-    }
-  }
-
-  let amount = document.querySelectorAll("#amount")
-  changeNum(amount)
-
-  let total = document.querySelectorAll("#total")
-  changeNum(total)
-
-</script>
 
 </html>

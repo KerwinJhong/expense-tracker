@@ -32,7 +32,7 @@ router.get('/:id/edit', authenticated, (req, res) => {
             // ============ dateFormat ============
         let dateFormat = { "dateFormat": record.date.toJSON().substr(0, 10) }
         Object.assign(record, dateFormat)
-        return res.render('edit', { record: record, dateFormat: dateFormat })
+        return res.render('edit', { record, dateFormat })
     })
 })
 
