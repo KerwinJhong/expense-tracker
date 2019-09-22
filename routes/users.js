@@ -12,9 +12,11 @@ router.get('/login', (req, res) => {
 
 // 登入檢查
 router.post('/login', (req, res, next) => {
+    req.flash('warning_msg', "請確認帳號或密碼")
     passport.authenticate('local', { // 使用 passport 認證
         successRedirect: '/', // 登入成功會回到根目錄
-        failureRedirect: '/users/login' // 失敗會留在登入頁面
+        failureRedirect: '/users/login', // 失敗會留在登入頁面
+        failureFlash: true
     })(req, res, next)
 })
 
