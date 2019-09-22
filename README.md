@@ -61,6 +61,9 @@ http://localhost:3000
 + 餐廳所有清單
 ![image](https://github.com/KerwinJhong/expense-tracker/blob/master/KerwinWeb.png)
 
+## App
+[Link](https://rocky-stream-98104.herokuapp.com)
+
 ## 預設使用者資訊
 ```
 user1：
