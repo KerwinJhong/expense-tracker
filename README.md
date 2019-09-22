@@ -44,9 +44,9 @@ $ npm install
 ```
 $ npm run dev
 ```
-4. 建立預設餐廳資料
+4. 建立預設記帳清單與基本user帳號資料
 ```
-$ [~/expense-tracker/models/seeds] node run seeder
+$ [~/expense-tracker] npm run seeder
 ```
 5. 執行專案
 ```
@@ -58,7 +58,7 @@ http://localhost:3000
 ```
 
 ## 專案內容
-+ 餐廳所有清單
++ 設記帳清
 ![image](https://github.com/KerwinJhong/expense-tracker/blob/master/KerwinWeb.png)
 
 ## App
