@@ -142,4 +142,5 @@ function changeNum(arr) {
 changeNum(document.querySelectorAll("#amount"))
 changeNum(document.querySelectorAll("#total"))
 
+// ===========  search item disabled ===========
 searchDis()
