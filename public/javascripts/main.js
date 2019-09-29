@@ -44,9 +44,16 @@ function searchDis() {
     let dayDis = document.getElementById("inVaDay")
     monthDis.disabled = false
     dayDis.disabled = false
-    if (yearDis.value === "全部") monthDis.disabled = true
+    if (yearDis.value === "全部") {
+        monthDis.disabled = true
+        monthDis.value = ""
+        dayDis.value = ""
+    }
     if (yearDis.value.trim() === "") monthDis.disabled = true
-    if (monthDis.value === "全部") dayDis.disabled = true
+    if (monthDis.value === "全部") {
+        dayDis.disabled = true
+        dayDis.value = ""
+    }
     if (monthDis.value.trim() === "") dayDis.disabled = true
 }
 // ===========  add search item  ===========
@@ -134,3 +141,5 @@ function changeNum(arr) {
 // ===========  simplify money value ===========
 changeNum(document.querySelectorAll("#amount"))
 changeNum(document.querySelectorAll("#total"))
+
+searchDis()
