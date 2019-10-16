@@ -19,6 +19,8 @@
       style="background-color: #007BFF;border-radius: 0px 0px 10% 10%;">
       <a class="navbar-brand font-weight-bolder" href="/">家庭記帳本</a>
       {{#if isAuthenticated}}
+      <a href="" class="nav-link text-light" style="text-transform: capitalize;margin: 0;">
+        Welcome, {{user.name}}</a>
       <a href="/users/logout" class="btn btn-outline-light">登出</a>
       {{else}}
       <a href="/users/login" class="btn btn-outline-light">登入</a>
